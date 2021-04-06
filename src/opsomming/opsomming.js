@@ -99,19 +99,18 @@ registerBlockType( 'cgb/block-opsomming', {
         }
 
 		return (
-			<div className="test">
+			<div className="opsomming">
+                <div className="opsomming__add">
                 <input type="text" placeholder="Title" onChange={updateTitle} onBlur={updateTitle}></input>
                 <input type="text" placeholder="Content" onChange={updateContent} onBlur={updateContent}></input>
                 <div className="add" onClick={addAmount}>Add</div>
-
-
-                
+                </div>
                 {
                 props.attributes.items ? 
-                props.attributes.items.map((item, index) => 
-                    <div>
-                        {index + 1}
+                props.attributes.items.map((item) => 
+                    <div className="opsomming__item">
                         {item[0]} 
+                        <br />
                         {item[1]}
                     </div>
                 ) : null}
