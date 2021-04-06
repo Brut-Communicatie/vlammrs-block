@@ -1,0 +1,48 @@
+/**
+ * #.# Styles
+ *
+ * CSS for both Frontend+Backend.
+ */
+
+.wp-block-cgb-block-vlammrs {
+	background: $red;
+	border: 0.2rem solid $black;
+	color: $black;
+	margin: 0 auto;
+	max-width: 740px;
+	padding: 2rem;
+}
+
+
+.vlammrs {
+	&__container {
+		width: 100%;
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-start;
+	}
+
+	&__content {
+		width: 60%;
+
+		h4 {
+      color: #29265b;
+      strong{
+      color: #e71d73;
+      }
+		}
+	}
+
+	&__sidebar {
+		width: 35%;
+	}
+
+	&__cta {
+		display: flex;
+		background-color: #e71d73;
+		padding: 2rem;
+    margin-top: -230px;
+    
+    color: #fff;
+	}
+}
