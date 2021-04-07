@@ -11,3 +11,4 @@
 
 import './block/block.js';
 import './opsomming/opsomming.js';
+import './banner/banner.js';

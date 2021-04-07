@@ -11,7 +11,7 @@ import './style.scss';
 
 const { __ } = wp.i18n; // Import __() from wp.i18n
 const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.blocks
-
+const {  MediaUpload } = wp.blockEditor;
 /**
  * Register: aa Gutenberg Block.
  *
@@ -27,26 +27,35 @@ const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.b
  */
 let defaultCount = 0;
 
-registerBlockType( 'cgb/block-opsomming', {
+registerBlockType( 'cgb/block-banner', {
 	// Block name. Block names must be string that contains a namespace prefix. Example: my-plugin/my-custom-block.
-	title: __( 'Vlammrs: Opsomming' ), // Block title.
+	title: __( 'Vlammrs: Banner' ), // Block title.
 	icon: 'dashicons-admin-site-alt3', // Block icon from Dashicons → https://developer.wordpress.org/resource/dashicons/.
 	category: 'common', // Block category — Group blocks together based on common traits E.g. common, formatting, layout widgets, embed.
 	keywords: [
 		__( 'Vlammrs' ),
-		__( 'Vlammrs Header' ),
-		__( 'Header' ),
+		__( 'Vlammrs Banner' ),
+		__( 'Banner' ),
     ],
     attributes : {
-        items : {
-            type: 'array',
-        },
-        title : {
-            type: 'string',
-        },
-        content : {
-            type: 'string',
-        },
+        mediaId: {
+			type: 'number',
+		},
+		mediaUrl: {
+			type: 'string'
+		},
+        titel: {
+			type: 'string'
+		},
+        quote: {
+			type: 'string'
+		},
+        naam: {
+			type: 'string'
+		},
+        functie: {
+			type: 'string'
+		},
     },
     
 	/**
@@ -60,73 +69,69 @@ registerBlockType( 'cgb/block-opsomming', {
 	 * @param {Object} props Props.
 	 * @returns {Mixed} JSX Component.
 	 */
-	edit: ( props, setAttributes ) => {
+	edit: ( props ) => {
 		console.log(props);
+        const onSelectMedia = (media) => {
+			props.setAttributes({
+				mediaId: media.id,
+				mediaUrl: media.url
+			});
+		}
 
-        const addAmount = () => {
-
-            const obj = [
-                props.attributes.title,
-                props.attributes.content
-            ]
-
-            let array = props.attributes.items;
-            
-            if (!array){
-                array = [];
-                array = [...array, obj];
-            } else {
-                array = [...array, obj];
-            }
-
+        const updateName = (e) => {
             props.setAttributes({
-                items: array,
+                naam: e.target.value,
             });
         }
 
-        const updateTitle = (e) => {
+        const updateQuote = (e) => {
             props.setAttributes({
-                title: e.target.value,
+                quote: e.target.value,
             });
         }
-
-        const updateContent = (e) => {
+        
+        const updateTitel = (e) => {
             props.setAttributes({
-                content: e.target.value,
+                titel: e.target.value,
             });
         }
-
-        const deleteItem = (index) => {
-            console.log(index);
-            const arr = props.attributes.items;
-            arr.splice(index, 1);
+        
+        const updateFunctie = (e) => {
             props.setAttributes({
-                items: false,
-            });
-            props.setAttributes({
-                items: arr,
+                functie: e.target.value,
             });
         }
+        
 
 		return (
-			<div className="opsomming">
-                <div className="opsomming__add">
-                <input type="text" placeholder="Titel" onChange={updateTitle} onBlur={updateTitle}></input>
-                <input type="text" placeholder="Content" onChange={updateContent} onBlur={updateContent}></input>
-                <div className="add" onClick={addAmount}>Voeg toe</div>
+			<div className="banner">
+                <div className="banner__image">
+                {props.attributes.mediaUrl != "" ? 
+				(
+					<div>
+					<img src={props.attributes.mediaUrl} />
+					</div>
+				)
+				: null}
+				<MediaUpload
+					title={__('Replace image', 'awp')}
+					value={props.attributes.mediaId}
+					onSelect={onSelectMedia}
+					allowedTypes={['image']}
+					render={({open}) => (
+						<a onClick={open} isDefault isLarge>{__('Selecteer of verander afbeelding', 'awp')}</a>
+					)}
+				/>
                 </div>
-                {
-                props.attributes.items ? 
-                props.attributes.items.map((item, index) => 
-                    <div className="opsomming__item">
-                        {item[0]} 
-                        <br />
-                        {item[1]}
-                        <div className="opsomming__delete">
-                            <div className="opsomming__delete--btn" onClick={() => deleteItem(index)}>Verwijder</div>
-                        </div>
-                    </div>
-                ) : null}
+                <div className="banner__content">
+                <input type="text" onBlur={updateTitel} onChange={updateTitel} placeholder="Titel" value={props.attributes.titel != "" ? (props.attributes.titel) : null}/>
+				<br/>
+				<input type="text" onBlur={updateQuote} onChange={updateQuote} placeholder="Quote" value={props.attributes.quote != "" ? (props.attributes.quote) : null}/>
+				<br/>
+				<input type="text" onBlur={updateNaam} onChange={updateNaam} placeholder="Naam" value={props.attributes.naam != "" ? (props.attributes.naam) : null}/>
+                <br/>
+				<input type="text" onBlur={updateFunctie} onChange={updateFunctie} placeholder="Functie" value={props.attributes.functie != "" ? (props.attributes.functie) : null}/>
+                </div>
 			</div>
 		);
 	},

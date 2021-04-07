@@ -29,7 +29,7 @@
 
 	&__right {
 		width: 35%;
-
+ 
     &--options{
       p{
         margin: 0;
@@ -67,5 +67,16 @@
       background-color: #82cff5;
     }
 	}
+  &--links{
+    margin-top: 25px;
+    input[type="text"]{
+      background-color: #fff;
+      color: black !important;
+      font-size: 18px;
+      &::placeholder{
+        color: rgb(145, 145, 145);
+      }
+    }
+  }
 }
 }

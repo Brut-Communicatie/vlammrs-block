@@ -96,6 +96,17 @@ function vlammrs_cgb_block_assets() { // phpcs:ignore
 			'render_callback' => 'render_opsomming',
 		)
 	);
+	register_block_type(
+		'cgb/block-banner', array(
+			// Enqueue blocks.style.build.css on both frontend & backend.
+			'style'         => 'vlammrs-cgb-style-css',
+			// Enqueue blocks.build.js in the editor only.
+			'editor_script' => 'vlammrs-cgb-block-js',
+			// Enqueue blocks.editor.build.css in the editor only.
+			'editor_style'  => 'vlammrs-cgb-block-editor-css',
+			'render_callback' => 'render_banner',
+		)
+	);
 }
 
 function render_header_block($attributes, $content){
@@ -117,12 +128,13 @@ function render_header_block($attributes, $content){
 	echo '<div class="c-panel c-panel--max-top">';
 	echo '<h2>'. $attributes['calltoaction'] .'</h2>';
 	echo '</div>';
-	echo 'LINK!!';
+	echo '<h2 style="margin-top: 2rem;">'. $attributes['additionalCTA'].'</h2>';
+	echo '<a class="c-btn" style="letter-spacing: 0;" href="' . $attributes['link'] . '">' . $attributes['linkText'] . '</a>';
 	}
 	else if ($CTABlock == "BLAUW"){
 	echo '<div class="c-panel c-panel--blue c-panel--max-top">';
 	echo '<h2>'. $attributes['calltoaction'] .'</h2>';
-	echo '<a class="more" href="https://www.vlammrs.nl/contact-bedrijven/" target="_self">Kies voor een Vlammrs-partnership</a>';
+	echo '<a class="more" href="' . $attributes['link'] . '" target="_self">' . $attributes['linkText'] . '</a>';
 	echo '</div>';
 	}
 	echo '</div>';
@@ -141,6 +153,30 @@ function render_opsomming($attributes){
 		echo '</li>';
 	}
 	echo '</ol>';
+	return ob_get_clean();
+}
+
+function render_banner($attributes){
+	ob_start();
+	echo '<div class="quote__new">';
+	echo '<div class="quote__container">';
+
+	echo '<div class="quote__image">';
+	echo '<img width="200px" src="' . $attributes['mediaUrl'] . '" alt="Foto quote"/>';
+	echo '</div>';
+
+	echo '<div class="quote__content">';
+	echo '<div class="c-quote__quote" style="font-size: 2.5rem;">“Vlammrs biedt human support in de digitale transitie!”</div>';
+	echo '<span class="c-quote__author">';
+	echo '<p>“Vlammrs biedt met het young data science ontwikkelprogramma projecten uitkomst aan bedrijven. Ze helpt organisaties met digitaal geschoold talent om de noodzakelijke transitie in je bedrijf van binnenuit tot een succes te maken. Zo’n samenwerking biedt perspectief, en past ook bij het economisch DNA van Noord-Brabant!”</p>';
+	echo '<p>– Bert Pauli';
+	echo '</br> Adviseur, commissaris en toezichthouder, oud-gedeputeerde provincie Noord-Brabant';
+	echo '</p>';
+	echo '</span>';
+	echo '</div>';
+
+	echo '</div>';
+	echo '</div>';
 	return ob_get_clean();
 }
 

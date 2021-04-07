@@ -46,6 +46,12 @@ attributes: {
 	CTABlock: {
 		type: 'string'
 	},
+	link: {
+		type: 'string',
+	},
+	linkText: {
+		type: 'string',
+	},
 },
 	/**
 	 * The edit function describes the structure of your block in the context of the editor.
@@ -67,9 +73,20 @@ attributes: {
 		}
 
 		const updateType = (e) => {
-			console.log(e.target.value);
 			props.setAttributes({
 				CTABlock: e.target.value,
+			});
+		}
+
+		const updateLink = (e) => {
+			props.setAttributes({
+				link: e.target.value,
+			});
+		}
+
+		const updateLinkText = (e) => {
+			props.setAttributes({
+				linkText: e.target.value,
 			});
 		}
 
@@ -102,8 +119,14 @@ attributes: {
 					: null}
 
 					{props.attributes.CTABlock == "LINK" ? 
+					<div>
 					<div className="container__right--cta">
 					<input type="text" value={props.attributes.calltoaction != "" ? (props.attributes.calltoaction) : null} onBlur={updateCTA} onChange={updateCTA} placeholder="Voer hier de CTA in..."/>
+					</div>
+					<div className="container__right--links">
+						<input type="text" placeholder="Link tekst" onChange={updateLinkText} onBlur={updateLinkText}  value={props.attributes.linkText != "" ? (props.attributes.linkText) : null}/>
+						<input type="text" placeholder="Link" onChange={updateLink} onBlur={updateLink}  value={props.attributes.link != "" ? (props.attributes.link) : null}/>
+					</div>
 					</div>
 					: null}
 
@@ -111,6 +134,10 @@ attributes: {
 					{props.attributes.CTABlock == "BLAUW" ? 
 					<div className="container__right--cta container__right--cta-blue">
 					<input type="text" value={props.attributes.calltoaction != "" ? (props.attributes.calltoaction) : null} onBlur={updateCTA} onChange={updateCTA} placeholder="Voer hier de CTA in..."/>
+					<div className="container__right--links">
+						<input type="text" placeholder="Link tekst" onChange={updateLinkText} onBlur={updateLinkText}  value={props.attributes.linkText != "" ? (props.attributes.linkText) : null}/>
+						<input type="text" placeholder="Link" onChange={updateLink} onBlur={updateLink}  value={props.attributes.link != "" ? (props.attributes.link) : null}/>
+					</div>
 					</div>
 					: null}
 					
