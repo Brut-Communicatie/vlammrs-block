@@ -78,7 +78,7 @@ registerBlockType( 'cgb/block-banner', {
 			});
 		}
 
-        const updateName = (e) => {
+        const updateNaam = (e) => {
             props.setAttributes({
                 naam: e.target.value,
             });
@@ -124,13 +124,13 @@ registerBlockType( 'cgb/block-banner', {
 				/>
                 </div>
                 <div className="banner__content">
-                <input type="text" onBlur={updateTitel} onChange={updateTitel} placeholder="Titel" value={props.attributes.titel != "" ? (props.attributes.titel) : null}/>
+                <input type="text" onBlur={updateTitel} onChange={updateTitel} placeholder="Titel" value={props.attributes.titel != "" ? (props.attributes.titel) : null} />
 				<br/>
-				<input type="text" onBlur={updateQuote} onChange={updateQuote} placeholder="Quote" value={props.attributes.quote != "" ? (props.attributes.quote) : null}/>
+				<input type="text" onBlur={updateQuote} onChange={updateQuote} placeholder="Quote" value={props.attributes.quote != "" ? (props.attributes.quote) : null} />
 				<br/>
-				<input type="text" onBlur={updateNaam} onChange={updateNaam} placeholder="Naam" value={props.attributes.naam != "" ? (props.attributes.naam) : null}/>
+				<input type="text" onBlur={updateNaam} onChange={updateNaam} placeholder="Naam" value={props.attributes.naam != "" ? (props.attributes.naam) : null} />
                 <br/>
-				<input type="text" onBlur={updateFunctie} onChange={updateFunctie} placeholder="Functie" value={props.attributes.functie != "" ? (props.attributes.functie) : null}/>
+				<input type="text" onBlur={updateFunctie} onChange={updateFunctie} placeholder="Functie" value={props.attributes.functie != "" ? (props.attributes.functie) : null} />
                 </div>
 			</div>
 		);
