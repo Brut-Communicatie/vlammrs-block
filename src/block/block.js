@@ -12,7 +12,7 @@ import { useBlockProps, InnerBlocks } from '@wordpress/block-editor';
 
 const { __ } = wp.i18n; // Import __() from wp.i18n
 const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.blocks
-
+import { TextareaControl } from '@wordpress/components';
 /**
  * Register: aa Gutenberg Block.
  *
@@ -90,6 +90,12 @@ attributes: {
 			});
 		}
 
+		const updateAdditionalCTA = (text) => {
+			props.setAttributes({
+				additionalCTA: text,
+			});
+		}
+
 		const CHOICES_MAP = [
 			{ value: "CTA", name: "CTA"},
 			{ value: "LINK", name: "CTA met link"},
@@ -123,6 +129,11 @@ attributes: {
 					<div className="container__right--cta">
 					<input type="text" value={props.attributes.calltoaction != "" ? (props.attributes.calltoaction) : null} onBlur={updateCTA} onChange={updateCTA} placeholder="Voer hier de CTA in..."/>
 					</div>
+					<TextareaControl
+						label="Additionele tekst"
+						value={ props.attributes.additionalCTA }
+						onChange={ ( text ) => updateAdditionalCTA(text) }
+					/>
 					<div className="container__right--links">
 						<input type="text" placeholder="Link tekst" onChange={updateLinkText} onBlur={updateLinkText}  value={props.attributes.linkText != "" ? (props.attributes.linkText) : null}/>
 						<input type="text" placeholder="Link" onChange={updateLink} onBlur={updateLink}  value={props.attributes.link != "" ? (props.attributes.link) : null}/>

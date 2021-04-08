@@ -107,6 +107,17 @@ function vlammrs_cgb_block_assets() { // phpcs:ignore
 			'render_callback' => 'render_banner',
 		)
 	);
+	register_block_type(
+		'cgb/block-button', array(
+			// Enqueue blocks.style.build.css on both frontend & backend.
+			'style'         => 'vlammrs-cgb-style-css',
+			// Enqueue blocks.build.js in the editor only.
+			'editor_script' => 'vlammrs-cgb-block-js',
+			// Enqueue blocks.editor.build.css in the editor only.
+			'editor_style'  => 'vlammrs-cgb-block-editor-css',
+			'render_callback' => 'render_button',
+		)
+	);
 }
 
 function render_header_block($attributes, $content){
@@ -177,6 +188,12 @@ function render_banner($attributes){
 
 	echo '</div>';
 	echo '</div>';
+	return ob_get_clean();
+}
+
+function render_button($attributes){
+	ob_start();
+	echo '<a class="c-btn" href="'. $attributes['link'] .'" target="_self" rel="noopener noreferrer">'. $attributes['text'] .'</a>';
 	return ob_get_clean();
 }
 

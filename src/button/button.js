@@ -11,8 +11,7 @@ import './style.scss';
 
 const { __ } = wp.i18n; // Import __() from wp.i18n
 const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.blocks
-const {  MediaUpload } = wp.blockEditor;
-import { TextareaControl } from '@wordpress/components';
+import { TextControl } from '@wordpress/components';
 /**
  * Register: aa Gutenberg Block.
  *
@@ -28,33 +27,21 @@ import { TextareaControl } from '@wordpress/components';
  */
 let defaultCount = 0;
 
-registerBlockType( 'cgb/block-banner', {
+registerBlockType( 'cgb/block-button', {
 	// Block name. Block names must be string that contains a namespace prefix. Example: my-plugin/my-custom-block.
-	title: __( 'Vlammrs: Banner' ), // Block title.
+	title: __( 'Vlammrs: Button' ), // Block title.
 	icon: 'dashicons-admin-site-alt3', // Block icon from Dashicons → https://developer.wordpress.org/resource/dashicons/.
 	category: 'common', // Block category — Group blocks together based on common traits E.g. common, formatting, layout widgets, embed.
 	keywords: [
 		__( 'Vlammrs' ),
-		__( 'Vlammrs Banner' ),
-		__( 'Banner' ),
+		__( 'Vlammrs Button' ),
+		__( 'Button' ),
     ],
     attributes : {
-        mediaId: {
-			type: 'number',
+        link: {
+			type: 'string',
 		},
-		mediaUrl: {
-			type: 'string'
-		},
-        titel: {
-			type: 'string'
-		},
-        quote: {
-			type: 'string'
-		},
-        naam: {
-			type: 'string'
-		},
-        functie: {
+		text: {
 			type: 'string'
 		},
     },
@@ -72,73 +59,32 @@ registerBlockType( 'cgb/block-banner', {
 	 */
 	edit: ( props ) => {
 		console.log(props);
-        const onSelectMedia = (media) => {
-			props.setAttributes({
-				mediaId: media.id,
-				mediaUrl: media.url
-			});
-		}
 
-        const updateNaam = (e) => {
+        const updateName = (text) => {
             props.setAttributes({
-                naam: e.target.value,
+                text: text,
             });
         }
 
-        const updateQuote = (text) => {
+        const updateLink = (text) => {
             props.setAttributes({
-                quote: text,
-            });
-        }
-        
-        const updateTitel = (text) => {
-            props.setAttributes({
-                titel: text,
-            });
-        }
-        
-        const updateFunctie = (e) => {
-            props.setAttributes({
-                functie: e.target.value,
+                link: text
             });
         }
         
 
 		return (
-			<div className="banner">
-                <div className="banner__image">
-                {props.attributes.mediaUrl != "" ? 
-				(
-					<div>
-					<img src={props.attributes.mediaUrl} />
-					</div>
-				)
-				: null}
-				<MediaUpload
-					title={__('Replace image', 'awp')}
-					value={props.attributes.mediaId}
-					onSelect={onSelectMedia}
-					allowedTypes={['image']}
-					render={({open}) => (
-						<a onClick={open} isDefault isLarge>{__('Selecteer of verander afbeelding', 'awp')}</a>
-					)}
-				/>
-                </div>
-                <div className="banner__content">
-				<TextareaControl
-						label="Titel"
-						value={ props.attributes.titel }
-						onChange={ ( text ) => updateTitel(text) }
-					/>
-				<TextareaControl
-						label="Quote"
-						value={ props.attributes.quote }
-						onChange={ ( text ) => updateQuote(text) }
-					/>
-				<input type="text" onBlur={updateNaam} onChange={updateNaam} placeholder="Naam" value={props.attributes.naam != "" ? (props.attributes.naam) : null} />
-                <br/>
-				<input type="text" onBlur={updateFunctie} onChange={updateFunctie} placeholder="Functie" value={props.attributes.functie != "" ? (props.attributes.functie) : null} />
-                </div>
+			<div className="button">
+                <TextControl
+                    label="Text van button"
+                    value={ props.attributes.text }
+                    onChange={ ( text ) => updateName(text) }
+                />
+                <TextControl
+                    label="Link van button"
+                    value={ props.attributes.link }
+                    onChange={ ( link ) => updateLink(link) }
+                />
 			</div>
 		);
 	},
