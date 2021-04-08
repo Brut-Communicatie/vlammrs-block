@@ -1,5 +1,5 @@
 /**
- * BLOCK: opsomming
+ * BLOCK: vlammrs
  *
  * Registering a basic block with Gutenberg.
  * Simple block, renders and saves the same content without any interactivity.
@@ -8,10 +8,11 @@
 //  Import CSS.
 import './editor.scss';
 import './style.scss';
+import { InnerBlocks } from '@wordpress/block-editor';
 
 const { __ } = wp.i18n; // Import __() from wp.i18n
 const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.blocks
-import { TextControl } from '@wordpress/components';
+
 /**
  * Register: aa Gutenberg Block.
  *
@@ -25,26 +26,18 @@ import { TextControl } from '@wordpress/components';
  * @return {?WPBlock}          The block, if it has been successfully
  *                             registered; otherwise `undefined`.
  */
-
-registerBlockType( 'cgb/block-button', {
+registerBlockType( 'cgb/block-sidecontent', {
 	// Block name. Block names must be string that contains a namespace prefix. Example: my-plugin/my-custom-block.
-	title: __( 'Vlammrs: Button' ), // Block title.
+	title: __( 'Vlammrs: Side content' ), // Block title.
 	icon: 'dashicons-admin-site-alt3', // Block icon from Dashicons → https://developer.wordpress.org/resource/dashicons/.
 	category: 'common', // Block category — Group blocks together based on common traits E.g. common, formatting, layout widgets, embed.
 	keywords: [
 		__( 'Vlammrs' ),
-		__( 'Vlammrs Button' ),
-		__( 'Button' ),
-    ],
-    attributes : {
-        link: {
-			type: 'string',
-		},
-		text: {
-			type: 'string'
-		},
-    },
-    
+		__( 'Vlammrs Side Content' ),
+		__( 'Content' ),
+	],
+attributes: {
+},
 	/**
 	 * The edit function describes the structure of your block in the context of the editor.
 	 * This represents what the editor will render when the block is used.
@@ -56,35 +49,14 @@ registerBlockType( 'cgb/block-button', {
 	 * @param {Object} props Props.
 	 * @returns {Mixed} JSX Component.
 	 */
-	edit: ( props ) => {
+	edit: ( props, setAttributes ) => {
 		console.log(props);
 
-        const updateName = (text) => {
-            props.setAttributes({
-                text: text,
-            });
-        }
-
-        const updateLink = (text) => {
-            props.setAttributes({
-                link: text
-            });
-        }
-        
-
 		return (
-			<div className="button">
-                <TextControl
-                    label="Tekst van button"
-                    value={ props.attributes.text }
-                    onChange={ ( text ) => updateName(text) }
-                />
-                <TextControl
-                    label="Link van button"
-                    value={ props.attributes.link }
-                    onChange={ ( link ) => updateLink(link) }
-                />
-			</div>
+			<div className="container__content">
+					<InnerBlocks />
+            </div>
+
 		);
 	},
 
@@ -99,7 +71,5 @@ registerBlockType( 'cgb/block-button', {
 	 * @param {Object} props Props.
 	 * @returns {Mixed} JSX Frontend HTML.
 	 */
-	save: (props) => {
-        return null;
-    }
+	save: props => <InnerBlocks.Content />
 } );

@@ -13,3 +13,8 @@ import './block/block.js';
 import './opsomming/opsomming.js';
 import './banner/banner.js';
 import './button/button.js';
+import './buttonblock/buttonblock';
+import './contentblock/contenblock.js';
+import './list/list.js';
+import './sidecontent/content.js';
+import './contact/contact.js';

@@ -1,4 +1,253 @@
-.wp-block-cgb-block-vlammrs{background:#bada55;border:0.2rem solid #292929;color:#292929;margin:0 auto;max-width:740px;padding:2rem}.container{display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between;-ms-flex-align:start;align-items:flex-start;padding:0 15px}.container__left{width:60%;background-color:#fff;padding:10px}.container__right{width:35%}.container__right--options{margin-bottom:10px;width:100%}.container__right--options p{margin:0}.container__right--options select{width:100%}.container__right--cta{background-color:#e71d73;width:100%;padding:10px;margin-bottom:10px}.container__right--cta input[type="text"]{border:0 !important;background-color:rgba(0,0,0,0);color:#fff;outline:none;font-size:20px;width:100%;font-family:Arial, Helvetica, sans-serif}.container__right--cta input[type="text"]::-webkit-input-placeholder{color:#fff}.container__right--cta input[type="text"]::-moz-placeholder{color:#fff}.container__right--cta input[type="text"]::-ms-input-placeholder{color:#fff}.container__right--cta input[type="text"]::placeholder{color:#fff}.container__right--cta input[type="text"]:focus{border:0 !important;outline:none !important}.container__right--cta input[type="text"]:focus-within{border:0 !important;outline:none !important}.container__right--cta-blue{background-color:#82cff5}.container__right--links{margin-top:25px}.container__right--links input[type="text"]{background-color:#fff;color:black !important;font-size:14px;margin-bottom:5px}.container__right--links input[type="text"]::-webkit-input-placeholder{color:#919191}.container__right--links input[type="text"]::-moz-placeholder{color:#919191}.container__right--links input[type="text"]::-ms-input-placeholder{color:#919191}.container__right--links input[type="text"]::placeholder{color:#919191}
-.opsomming{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;height:auto;padding:10px;width:100%;background-color:#eaeaea}.opsomming__add{display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between;margin-left:5px}.opsomming__add input[type="text"]{width:calc(100% / 3 - 10px);-ms-flex-positive:1;flex-grow:1;font-size:16px}.opsomming__item{padding:10px;background-color:#dbdbdb;margin:10px 0;position:relative}.opsomming__item:hover .opsomming__delete{display:-ms-flexbox;display:flex}.opsomming__delete{display:none;position:absolute;top:0;left:0;width:100%;height:100%;background-color:rgba(0,0,0,0.5);-ms-flex-pack:center;justify-content:center;-ms-flex-align:center;align-items:center}.opsomming__delete--btn{background-color:red;color:#fff;padding:10px;border-radius:5px;font-size:15px}.opsomming__delete--btn:hover{opacity:0.9;cursor:pointer}.add{padding:5px 15px;background-color:#e71d73;color:#fff;border-radius:5px}.add:hover{opacity:0.9;cursor:pointer}
-.banner{width:100%;display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between;-ms-flex-align:center;align-items:center;height:auto;padding:25px;background-color:#82cff5}.banner__image{width:40%;display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column}.banner__content{width:55%}
-.button{width:100%;display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column}.button div div{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column}
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+/**
+ * #.# Editor Styles
+ *
+ * CSS for just Backend enqueued after style.scss
+ * which makes it higher in priority.
+ */
+.wp-block-cgb-block-vlammrs {
+  background: #bada55;
+  border: 0.2rem solid #292929;
+  color: #292929;
+  margin: 0 auto;
+  max-width: 740px;
+  padding: 2rem; }
+
+.container {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
+  -ms-flex-align: start;
+      align-items: flex-start;
+  padding: 0 15px; }
+  .container__left {
+    width: 60%;
+    background-color: #fff;
+    padding: 10px; }
+  .container__right {
+    width: 35%; }
+    .container__right--options {
+      margin-bottom: 10px;
+      width: 100%; }
+      .container__right--options p {
+        margin: 0; }
+      .container__right--options select {
+        width: 100%; }
+    .container__right--cta {
+      background-color: #e71d73;
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px; }
+      .container__right--cta input[type="text"] {
+        border: 0 !important;
+        background-color: rgba(0, 0, 0, 0);
+        color: #fff;
+        outline: none;
+        font-size: 20px;
+        width: 100%;
+        font-family: Arial, Helvetica, sans-serif; }
+        .container__right--cta input[type="text"]::-webkit-input-placeholder {
+          color: #fff; }
+        .container__right--cta input[type="text"]::-moz-placeholder {
+          color: #fff; }
+        .container__right--cta input[type="text"]::-ms-input-placeholder {
+          color: #fff; }
+        .container__right--cta input[type="text"]::placeholder {
+          color: #fff; }
+        .container__right--cta input[type="text"]:focus {
+          border: 0 !important;
+          outline: none !important; }
+        .container__right--cta input[type="text"]:focus-within {
+          border: 0 !important;
+          outline: none !important; }
+      .container__right--cta-blue {
+        background-color: #82cff5; }
+    .container__right--links {
+      margin-top: 25px; }
+      .container__right--links input[type="text"] {
+        background-color: #fff;
+        color: black !important;
+        font-size: 14px;
+        margin-bottom: 5px; }
+        .container__right--links input[type="text"]::-webkit-input-placeholder {
+          color: #919191; }
+        .container__right--links input[type="text"]::-moz-placeholder {
+          color: #919191; }
+        .container__right--links input[type="text"]::-ms-input-placeholder {
+          color: #919191; }
+        .container__right--links input[type="text"]::placeholder {
+          color: #919191; }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+.opsomming {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  height: auto;
+  padding: 10px;
+  width: 100%;
+  background-color: #eaeaea; }
+  .opsomming__add {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: justify;
+        justify-content: space-between;
+    margin-left: 5px; }
+    .opsomming__add input[type="text"] {
+      width: calc(100% / 3 - 10px);
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+      font-size: 16px; }
+  .opsomming__item {
+    padding: 10px;
+    background-color: #dbdbdb;
+    margin: 10px 0;
+    position: relative; }
+    .opsomming__item:hover .opsomming__delete {
+      display: -ms-flexbox;
+      display: flex; }
+  .opsomming__delete {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    -ms-flex-pack: center;
+        justify-content: center;
+    -ms-flex-align: center;
+        align-items: center; }
+    .opsomming__delete--btn {
+      background-color: red;
+      color: #fff;
+      padding: 10px;
+      border-radius: 5px;
+      font-size: 15px; }
+      .opsomming__delete--btn:hover {
+        opacity: 0.9;
+        cursor: pointer; }
+
+.add {
+  padding: 5px 15px;
+  background-color: #e71d73;
+  color: #fff;
+  border-radius: 5px; }
+  .add:hover {
+    opacity: 0.9;
+    cursor: pointer; }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+.banner {
+  width: 100%;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
+  -ms-flex-align: center;
+      align-items: center;
+  height: auto;
+  padding: 25px;
+  background-color: #82cff5; }
+  .banner__image {
+    width: 40%;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+        flex-direction: column; }
+  .banner__content {
+    width: 55%; }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+.button {
+  width: 100%;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column; }
+  .button div div {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+        flex-direction: column; }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+.button {
+  width: 100%;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column; }
+  .button div div {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+        flex-direction: column; }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+.container__content {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  width: 100%;
+  min-height: 2rem;
+  background-color: #fff;
+  padding: 10px; }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+.list {
+  width: 100%;
+  min-height: 1rem; }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+.container__content {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  width: 100%;
+  min-height: 2rem;
+  background-color: #fff;
+  padding: 10px; }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/

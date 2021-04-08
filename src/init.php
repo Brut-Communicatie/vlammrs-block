@@ -118,6 +118,62 @@ function vlammrs_cgb_block_assets() { // phpcs:ignore
 			'render_callback' => 'render_button',
 		)
 	);
+	register_block_type(
+		'cgb/block-buttonblock', array(
+			// Enqueue blocks.style.build.css on both frontend & backend.
+			'style'         => 'vlammrs-cgb-style-css',
+			// Enqueue blocks.build.js in the editor only.
+			'editor_script' => 'vlammrs-cgb-block-js',
+			// Enqueue blocks.editor.build.css in the editor only.
+			'editor_style'  => 'vlammrs-cgb-block-editor-css',
+			'render_callback' => 'render_buttonblock',
+		)
+	);
+	register_block_type(
+		'cgb/block-content', array(
+			// Enqueue blocks.style.build.css on both frontend & backend.
+			'style'         => 'vlammrs-cgb-style-css',
+			// Enqueue blocks.build.js in the editor only.
+			'editor_script' => 'vlammrs-cgb-block-js',
+			// Enqueue blocks.editor.build.css in the editor only.
+			'editor_style'  => 'vlammrs-cgb-block-editor-css',
+			'render_callback' => 'render_content',
+		)
+	);
+	register_block_type(
+		'cgb/block-list', array(
+			// Enqueue blocks.style.build.css on both frontend & backend.
+			'style'         => 'vlammrs-cgb-style-css',
+			// Enqueue blocks.build.js in the editor only.
+			'editor_script' => 'vlammrs-cgb-block-js',
+			// Enqueue blocks.editor.build.css in the editor only.
+			'editor_style'  => 'vlammrs-cgb-block-editor-css',
+			'render_callback' => 'render_list',
+		)
+	);
+
+	register_block_type(
+		'cgb/block-sidecontent', array(
+			// Enqueue blocks.style.build.css on both frontend & backend.
+			'style'         => 'vlammrs-cgb-style-css',
+			// Enqueue blocks.build.js in the editor only.
+			'editor_script' => 'vlammrs-cgb-block-js',
+			// Enqueue blocks.editor.build.css in the editor only.
+			'editor_style'  => 'vlammrs-cgb-block-editor-css',
+			'render_callback' => 'render_sidecontent',
+		)
+	);
+	register_block_type(
+		'cgb/block-contact', array(
+			// Enqueue blocks.style.build.css on both frontend & backend.
+			'style'         => 'vlammrs-cgb-style-css',
+			// Enqueue blocks.build.js in the editor only.
+			'editor_script' => 'vlammrs-cgb-block-js',
+			// Enqueue blocks.editor.build.css in the editor only.
+			'editor_style'  => 'vlammrs-cgb-block-editor-css',
+			'render_callback' => 'render_contact',
+		)
+	);
 }
 
 function render_header_block($attributes, $content){
@@ -197,5 +253,57 @@ function render_button($attributes){
 	return ob_get_clean();
 }
 
+function render_buttonblock($attributes){
+	ob_start();
+	echo '<div class="l-grid__col--bg-primary l-grid__col c-banner__panel-heading" style="background-color:#6ad1f9;">';
+	echo '<span>' . $attributes['content'] . '</span>';
+	echo '<br>';
+	echo '<a class="c-btn" style="letter-spacing: 0;" href="' . $attributes['link'] . '">' . $attributes['text'] . '</a>';
+	echo '</div>';
+	return ob_get_clean();
+}
+
+function render_content($attributes, $content){
+	ob_start();
+	echo '<div class="c-vacancy l-contain l-contain--small c-content">';
+	echo $content;
+	echo '</div>';
+	return ob_get_clean();
+}
+
+function render_list($attributes, $content){
+	ob_start();
+	echo '<div class="c-vacancy__col">';
+	echo $content;
+	echo '</div>';
+	return ob_get_clean();
+}
+
+function render_sidecontent($attributes, $content){
+	ob_start();
+	echo '<div class="l-contain l-contain--small l-grid l-grid--60-40 l-grid--top c-content"><div class="l-grid__col">';
+	echo $content;
+	echo '</div></div>';
+	return ob_get_clean();
+}
+
+function render_contact($attributes, $content){
+	ob_start();
+
+	echo '<div class="l-contain l-contain--small l-grid l-grid--60-40 l-grid--contact c-content">';
+
+	echo '<div class="l-grid__col">';
+	echo $content;
+	echo '</div>';
+
+	echo '<div class="l-grid__col">';
+	echo '<div class="c-panel c-panel--max-top c-panel--contact">';
+	echo '<img width="1056px" src="' . $attributes['imgUrl'] . '" />';
+	echo '</div>';
+	echo '</div>';
+
+	echo '</div>';
+	return ob_get_clean();
+}
 // Hook: Block assets.
 add_action( 'init', 'vlammrs_cgb_block_assets' );
