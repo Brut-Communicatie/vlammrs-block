@@ -174,6 +174,50 @@ function vlammrs_cgb_block_assets() { // phpcs:ignore
 			'render_callback' => 'render_contact',
 		)
 	);
+	register_block_type(
+		'cgb/block-video', array(
+			// Enqueue blocks.style.build.css on both frontend & backend.
+			'style'         => 'vlammrs-cgb-style-css',
+			// Enqueue blocks.build.js in the editor only.
+			'editor_script' => 'vlammrs-cgb-block-js',
+			// Enqueue blocks.editor.build.css in the editor only.
+			'editor_style'  => 'vlammrs-cgb-block-editor-css',
+			'render_callback' => 'render_video',
+		)
+	);
+	register_block_type(
+		'cgb/block-home', array(
+			// Enqueue blocks.style.build.css on both frontend & backend.
+			'style'         => 'vlammrs-cgb-style-css',
+			// Enqueue blocks.build.js in the editor only.
+			'editor_script' => 'vlammrs-cgb-block-js',
+			// Enqueue blocks.editor.build.css in the editor only.
+			'editor_style'  => 'vlammrs-cgb-block-editor-css',
+			'render_callback' => 'render_home',
+		)
+	);
+	register_block_type(
+		'cgb/block-homecta', array(
+			// Enqueue blocks.style.build.css on both frontend & backend.
+			'style'         => 'vlammrs-cgb-style-css',
+			// Enqueue blocks.build.js in the editor only.
+			'editor_script' => 'vlammrs-cgb-block-js',
+			// Enqueue blocks.editor.build.css in the editor only.
+			'editor_style'  => 'vlammrs-cgb-block-editor-css',
+			'render_callback' => 'render_homecta',
+		)
+	);
+	register_block_type(
+		'cgb/block-column', array(
+			// Enqueue blocks.style.build.css on both frontend & backend.
+			'style'         => 'vlammrs-cgb-style-css',
+			// Enqueue blocks.build.js in the editor only.
+			'editor_script' => 'vlammrs-cgb-block-js',
+			// Enqueue blocks.editor.build.css in the editor only.
+			'editor_style'  => 'vlammrs-cgb-block-editor-css',
+			'render_callback' => 'render_column',
+		)
+	);
 }
 
 function render_header_block($attributes, $content){
@@ -298,10 +342,95 @@ function render_contact($attributes, $content){
 
 	echo '<div class="l-grid__col">';
 	echo '<div class="c-panel c-panel--max-top c-panel--contact">';
-	echo '<img width="1056px" src="' . $attributes['imgUrl'] . '" />';
+	echo '<img width="1056px" src="' . $attributes['mediaUrl'] . '" />';
+
+	if (isset($attributes['mail'])){
+		echo '<p>'.$attributes['mail'].'</p>';
+	}
+
+	if (isset($attributes['content'])){
+		echo '<p>'.$attributes['content'].'</p>';
+	}
+	
+	if (isset($attributes['tel'])){
+		$tel = $attributes['tel'];
+		$tel = preg_replace('/[^0-9]/', '', $tel);
+		echo '<a href="https://wa.me/'.$tel.'"><i class="fab fa-whatsapp"></i> ' . $attributes['tel'] . '</a>';
+	}
+	
+
 	echo '</div>';
 	echo '</div>';
 
+	echo '</div>';
+	return ob_get_clean();
+}
+
+function render_video($attributes){
+    ob_start();
+	echo '<header class="c-banner l-contain c-banner--home" role="banner">';
+	echo '<video class="c-banner__video" width="400" autoplay="" loop="" muted="" playsinline="">';
+	echo '<source src="'. $attributes['webmUrl'].'" type="video/webm">';
+	echo '<source src="'. $attributes['mediaUrl'] .'" type="video/mp4">';
+	echo 'Your browser does not support HTML5 video.';
+	echo '</video>';
+	echo '<div class="l-contain l-contain--small"><div class="c-banner__panel">'; 
+	echo '<div class="c-banner__panel-heading">';
+	echo $attributes['content'];
+	echo '<a class="c-banner__panel-more" href="'.$attributes['link'].'" target="_self">'.$attributes['linkText'].'</a>'; 
+	echo '</div>';
+	echo '</div>';
+	echo '</div>';
+	echo '</header>';
+    return ob_get_clean();
+}
+
+function render_home($attributes, $content) {
+
+	$usps = $attributes['usps'];
+
+	ob_start();
+	echo '<div class="l-contain l-contain--small l-grid l-grid--60-40" style="grid-column-gap: 2rem;">';
+	echo '<div class="l-grid__col--home c-content">';
+	echo $content;
+	echo '</div>';
+	echo '<div class="l-grid__col l-grid__col--home">';
+
+	echo '<div class="c-usps">';
+	echo '<h2 class="c-usps__heading"></h2>';
+	echo '<p>We helpen je met onze data-expertise te ontdekken wat je allemaal met data kunt en hoe dit praktisch toe te passen binnen jouw organisatie. Dat levert je de volgende voordelen op:</p>';
+	echo '<ul class="c-usps__list">';
+
+	foreach($usps as $usp) {
+		echo '<li class="c-usps__item" style="margin-bottom: 15px;font-size: 1.3rem;line-height: 1.5;letter-spacing: 0;">'. $usp .'</li>';
+	}
+
+	echo '</ul>';
+	echo '</div>';
+
+	echo '<a class="c-event">';
+	echo '<h2 class="c-event__heading"></h2>';
+	echo '<img src="'.$attributes['img'].'"';
+	echo '</a>';
+	echo '</div>';
+	echo '</div>';
+	return ob_get_clean();
+}
+
+function render_homecta($attributes, $content){
+	ob_start();
+	echo '<div class="l-grid__col l-grid__col--bg-primary l-grid__col--home c-content" style="margin-top: 0;">';
+	echo $content;
+	echo '<a class="c-btn c-btn--white vlamm_blue" href="'. $attributes['link'].'" target="_self">' . $attributes['text'] . '</a>';
+	echo '</div>';
+	return ob_get_clean();
+}
+
+
+function render_column($attributes, $content){
+	ob_start();
+	echo '<div class="l-grid__col">';
+	echo $content;
 	echo '</div>';
 	return ob_get_clean();
 }

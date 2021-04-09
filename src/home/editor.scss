@@ -1,0 +1,17 @@
+.home {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	padding: 0 15px;
+
+	&__left {
+		width: 60%;
+		background-color: #fff;
+		padding: 10px;
+
+	}
+
+	&__right {
+		width: 35%;
+    }
+}

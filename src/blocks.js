@@ -18,3 +18,7 @@ import './contentblock/contenblock.js';
 import './list/list.js';
 import './sidecontent/content.js';
 import './contact/contact.js';
+import './video/video.js';
+import './home/home.js';
+import './homeblock/homeblock.js';
+import './column/column.js';
