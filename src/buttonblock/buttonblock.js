@@ -43,10 +43,13 @@ registerBlockType( 'cgb/block-buttonblock', {
 			type: 'string',
 		},
 		text: {
-			type: 'string'
+			type: 'string',
 		},
         content: {
-			type: 'string'
+			type: 'string',
+		},
+		additional: {
+			type: 'string',
 		},
     },
     
@@ -81,6 +84,12 @@ registerBlockType( 'cgb/block-buttonblock', {
                 content: content,
             });
         }
+
+		const updateAdditional = (content) => {
+			props.setAttributes({
+				additional: content,
+			});
+		}
         
 		return (
 			<div className="button">
@@ -88,6 +97,11 @@ registerBlockType( 'cgb/block-buttonblock', {
 						label="Tekst"
 						value={ props.attributes.content }
 						onChange={ ( content ) => updateContent(content) }
+                />
+				<TextareaControl
+						label="Content"
+						value={ props.attributes.additional }
+						onChange={ ( content ) => updateAdditional(content) }
                 />
                 <TextControl
                     label="Tekst van button"

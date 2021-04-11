@@ -26,7 +26,6 @@ import { TextareaControl } from '@wordpress/components';
  * @return {?WPBlock}          The block, if it has been successfully
  *                             registered; otherwise `undefined`.
  */
-let defaultCount = 0;
 
 registerBlockType( 'cgb/block-banner', {
 	// Block name. Block names must be string that contains a namespace prefix. Example: my-plugin/my-custom-block.
